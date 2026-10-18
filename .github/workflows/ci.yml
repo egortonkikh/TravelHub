@@ -1,20 +1,15 @@
-cat << 'EOF' > ~/travel_hub_fixed/.github/workflows/ci.yml
 name: CI Pipeline
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build Docker images
         run: docker compose build
-EOF
