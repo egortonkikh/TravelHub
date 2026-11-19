@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelHub — Бронирование туров</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a href="#" class="logo">✈ TravelHub</a>
+    <nav>
+      <a href="#users">Пользователи</a>
+      <a href="#tours">Туры</a>
+      <a href="#bookings">Бронирования</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Бронируй туры <span class="accent">в три клика</span></h1>
+    <p>Демонстрация микросервисной системы бронирования. 3 сервиса FastAPI + PostgreSQL, всё в Docker Compose.</p>
+    <div class="hero-stats">
+      <div class="stat"><span id="stat-users">0</span><small>пользователей</small></div>
+      <div class="stat"><span id="stat-tours">0</span><small>туров</small></div>
+      <div class="stat"><span id="stat-bookings">0</span><small>бронирований</small></div>
+    </div>
+  </section>
+
+  <main>
+    <!-- USERS -->
+    <section id="users" class="card">
+      <div class="card-head">
+        <h2>Пользователи</h2>
+        <button class="btn-icon" data-refresh="users" title="Обновить">↻</button>
+      </div>
+      <form data-form="user" class="form-row">
+        <input type="text" name="name" placeholder="Имя" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit" class="btn">Добавить</button>
+      </form>
+      <div data-list="users" class="list"></div>
+    </section>
+
+    <!-- TOURS -->
+    <section id="tours" class="card">
+      <div class="card-head">
+        <h2>Туры</h2>
+        <button class="btn-icon" data-refresh="tours" title="Обновить">↻</button>
+      </div>
+      <form data-form="tour" class="form-col">
+        <input type="text" name="title" placeholder="Название тура" required>
+        <textarea name="description" placeholder="Описание" rows="2"></textarea>
+        <div class="form-row">
+          <input type="number" name="price" placeholder="Цена ($)" step="0.01" min="0" required>
+          <input type="number" name="duration" placeholder="Дней" min="1" required>
+        </div>
+        <button type="submit" class="btn">Добавить тур</button>
+      </form>
+      <div data-list="tours" class="list"></div>
+    </section>
+
+    <!-- BOOKINGS -->
+    <section id="bookings" class="card">
+      <div class="card-head">
+        <h2>Бронирования</h2>
+        <button class="btn-icon" data-refresh="bookings" title="Обновить">↻</button>
+      </div>
+      <form data-form="booking" class="form-row">
+        <select name="user_id" required>
+          <option value="">Выберите пользователя</option>
+        </select>
+        <select name="tour_id" required>
+          <option value="">Выберите тур</option>
+        </select>
+        <button type="submit" class="btn">Забронировать</button>
+      </form>
+      <div data-list="bookings" class="list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span>TravelHub · микросервисный демо-проект</span>
+    <span>FastAPI + PostgreSQL + Docker Compose + nginx</span>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
